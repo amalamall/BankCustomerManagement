@@ -1,0 +1,38 @@
+<nav
+  class="bg-background-navbar mt-6 w-[90%] mx-auto px-4 py-3 sm:px-6 lg:px-8 xs:flex-col rounded-2xl space-y-4"
+>
+  <div class="flex flex-row items-center gap-6">
+    <h4 class="text-primary-color text-lg">SQLI</h4>
+    <!-- <a
+        href="#"
+        class="text-black text-white bg-primary-color rounded-md px-3 py-2 text-sm font-medium"
+        aria-current="page"
+        >Bank Customer Management</a
+      > -->
+    <a
+      routerLink="/"
+      [routerLinkActiveOptions]="{ exact: true }"
+      routerLinkActive="text-primary-color"
+      href="#"
+      class="text-primary-color hover:bg-primary-color hover:text-white rounded-md px-3 py-2 text-sm font-medium"
+      >Home</a
+    >
+
+    <div class="flex-grow"></div>
+    <a
+      routerLink="/customer"
+      [routerLinkActiveOptions]="{ exact: true }"
+      routerLinkActive="bg-primary-color text-white"
+      class="text-primary-color bg-background-primary hover:bg-primary-color hover:text-white rounded-xl px-4 py-2 text-sm font-medium"
+      >Add Customer</a
+    >
+    <!-- <input
+      placeholder="Search Something..."
+      class="hidden md:block text-gray-300 bg-background-primary hover:bg-background-primary hover:text-black rounded-md px-3 py-2 text-sm font-medium justify-self-end"
+    /> -->
+  </div>
+  <!-- <input
+    placeholder="Search Something..."
+    class="md:hidden w-full block text-gray-300 bg-background-primary hover:bg-background-primary hover:text-black rounded-md px-3 py-2 text-sm font-medium justify-self-end"
+  /> -->
+</nav>

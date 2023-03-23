@@ -1,0 +1,316 @@
+<!-- component -->
+<div class="min-h-screen w-full flex items-center justify-center">
+  <div>
+    <h1 class="mb-1 font-bold text-3xl flex gap-1 items-baseline font-mono">
+      Customer<span class="text-sm text-primary-color">Add</span>
+    </h1>
+
+    <form
+      [formGroup]="customerForm"
+      (ngSubmit)="submit()"
+      class="flex flex-col w-full gap-6 mt-6"
+    >
+      <div
+        class="grid max-w-3xl gap-2 py-10 px-8 sm:grid-cols-2 bg-white rounded-md border-t-4 border-primary-color"
+      >
+        <div class="grid">
+          <div
+            class="bg-white flex min-h-[60px] flex-col-reverse justify-center rounded-md border border-gray-300 px-3 py-2 shadow-sm focus-within:shadow-inner"
+          >
+            <input
+              type="text"
+              name="firstName"
+              id="firstName"
+              formControlName="firstName"
+              class="peer block w-full border-0 p-0 text-base text-gray-900 placeholder-gray-400 focus:ring-0"
+              placeholder="First name"
+            />
+            <label
+              for="firstName"
+              class="block transform text-xs font-bold uppercase text-gray-400 transition-opacity, duration-200 peer-placeholder-shown:h-0 peer-placeholder-shown:-translate-y-full peer-placeholder-shown:opacity-0"
+              >First name
+            </label>
+            <div
+              class="flex flex-col"
+              *ngIf="
+                customerForm.get('firstName')?.errors &&
+                customerForm.get('firstName')?.touched
+              "
+            >
+              <small
+                class="text-red-500"
+                *ngIf="customerForm.get('firstName')?.errors?.['required']"
+                >First name is required</small
+              >
+              <small
+                class="text-red-500"
+                *ngIf="customerForm.get('firstName')?.errors?.['minlength']"
+                >First name should be at least 3 characters long</small
+              >
+              <small
+                class="text-red-500"
+                *ngIf="customerForm.get('firstName')?.errors?.['maxlength']"
+                >First name should not e more than 20 characters long</small
+              >
+            </div>
+          </div>
+        </div>
+        <div class="grid">
+          <div
+            class="bg-white first:flex min-h-[60px] flex-col-reverse justify-center rounded-md border border-gray-300 px-3 py-2 shadow-sm focus-within:shadow-inner"
+          >
+            <input
+              type="text"
+              name="lastName"
+              id="lastName"
+              formControlName="lastName"
+              class="peer block w-full border-0 p-0 text-base text-gray-900 placeholder-gray-400 focus:ring-0"
+              placeholder="Last name"
+            />
+            <label
+              for="lastName"
+              class="block transform text-xs font-bold uppercase text-gray-400 transition-opacity, duration-200 peer-placeholder-shown:h-0 peer-placeholder-shown:-translate-y-full peer-placeholder-shown:opacity-0"
+              >Last name</label
+            >
+            <div
+              class="flex flex-col"
+              *ngIf="
+                customerForm.get('lastName')?.errors &&
+                customerForm.get('lastName')?.touched
+              "
+            >
+              <small
+                class="text-red-500"
+                *ngIf="customerForm.get('lastName')?.errors?.['required']"
+                >Last name is required</small
+              >
+              <small
+                class="text-red-500"
+                *ngIf="customerForm.get('lastName')?.errors?.['minlength']"
+                >Last name should be at least 3 characters long</small
+              >
+              <small
+                class="text-red-500"
+                *ngIf="customerForm.get('lastName')?.errors?.['maxlength']"
+                >Last name should not e more than 20 characters long</small
+              >
+            </div>
+          </div>
+        </div>
+        <div class="grid">
+          <div
+            class="bg-white flex min-h-[60px] flex-col-reverse  justify-between rounded-md border border-gray-300 px-3 py-2 shadow-sm focus-within:shadow-inner"
+          >
+            <select
+              formControlName="gender"
+              id="gender"
+              class="w-[100%] text-baseline text-gray-500"
+            >
+              <option *ngFor="let gender of genders" [value]="gender">
+                {{ gender }}
+              </option>
+            </select>
+            <label
+              for="gender"
+              data-te-select-label-ref
+              class="block transform text-xs font-bold uppercase text-gray-400 transition-opacity, duration-200 peer-placeholder-shown:h-0 peer-placeholder-shown:-translate-y-full peer-placeholder-shown:opacity-0"
+              >Gender</label
+            >
+            <div
+              class="flex flex-col"
+              *ngIf="
+                customerForm.get('gender')?.errors &&
+                customerForm.get('gender')?.touched
+              "
+            >
+              <small
+                class="text-red-500"
+                *ngIf="customerForm.get('gender')?.errors?.['required']"
+                >Gender is required</small
+              >
+              <small
+                class="text-red-500"
+                *ngIf="customerForm.get('gender')?.errors?.['invalidGender']"
+                >Invalid gender selected</small
+              >
+            </div>
+          </div>
+        </div>
+        <div class="grid">
+          <div
+            class="bg-white flex min-h-[60px] flex-col-reverse justify-center rounded-md border border-gray-300 px-3 py-2 shadow-sm focus-within:shadow-inner"
+          >
+            <input
+              type="email"
+              name="email"
+              id="email"
+              formControlName="email"
+              class="peer block w-full border-0 p-0 text-base text-gray-900 placeholder-gray-400 focus:ring-0"
+              placeholder="E-mail"
+            />
+            <label
+              for="email"
+              html="email"
+              class="block transform text-xs font-bold uppercase text-gray-400 transition-opacity, duration-200 peer-placeholder-shown:h-0 peer-placeholder-shown:-translate-y-full peer-placeholder-shown:opacity-0"
+              >E-mail</label
+            >
+            <div
+              class="flex flex-col"
+              *ngIf="
+                customerForm.get('email')?.errors &&
+                customerForm.get('email')?.touched
+              "
+            >
+              <small
+                class="text-red-500"
+                *ngIf="customerForm.get('email')?.errors?.['required']"
+                >Email is required</small
+              >
+              <small
+                class="text-red-500"
+                *ngIf="customerForm.get('email')?.errors?.['email']"
+                >Invalid email format</small
+              >
+              <small
+                class="text-red-500"
+                *ngIf="customerForm.get('email')?.errors?.['emailExists']"
+                >Email Already Exists</small
+              >
+            </div>
+          </div>
+        </div>
+
+        <div class="grid">
+          <div
+            class="bg-white flex min-h-[60px] flex-col-reverse justify-center rounded-md border border-gray-300 px-3 py-2 shadow-sm focus-within:shadow-inner"
+          >
+            <input
+              type="number"
+              name="amount"
+              formControlName="amount"
+              id="amount"
+              class="peer block w-full border-0 p-0 text-base text-gray-900 placeholder-gray-400 focus:ring-0"
+              placeholder="Amount"
+            />
+            <label
+              for="amount"
+              html="amount"
+              class="block transform text-xs font-bold uppercase text-gray-400 transition-opacity, duration-200 peer-placeholder-shown:h-0 peer-placeholder-shown:-translate-y-full peer-placeholder-shown:opacity-0"
+              >Amount</label
+            >
+            <div
+              class="flex flex-col"
+              *ngIf="
+                customerForm.get('amount')?.errors &&
+                customerForm.get('amount')?.touched
+              "
+            >
+              <small
+                class="text-red-500"
+                *ngIf="customerForm.get('amount')?.errors?.['required']"
+                >Amount is required</small
+              >
+              <small
+                class="text-red-500"
+                *ngIf="customerForm.get('amount')?.errors?.['min']"
+                >Amount should be Positive</small
+              >
+            </div>
+          </div>
+        </div>
+
+        <div class="grid">
+          <div
+            class="bg-white flex min-h-[60px] flex-col-reverse justify-between rounded-md border border-gray-300 px-3 py-2 shadow-sm focus-within:shadow-inner"
+          >
+            <select
+              formControlName="type"
+              id="type"
+              class="w-[100%] text-baseline text-gray-500"
+            >
+              <option *ngFor="let type of types" [value]="type">
+                {{ type }}
+              </option>
+            </select>
+            <label
+              for="type"
+              data-te-select-label-ref
+              class="block transform text-xs font-bold uppercase text-gray-400 transition-opacity, duration-200 peer-placeholder-shown:h-0 peer-placeholder-shown:-translate-y-full peer-placeholder-shown:opacity-0"
+              >Type</label
+            >
+            <div
+              *ngIf="
+                customerForm.get('type')?.errors &&
+                customerForm.get('type')?.touched
+              "
+              class="flex flex-col"
+            >
+              <small
+                class="text-red-500"
+                *ngIf="customerForm.get('type')?.errors?.['required']"
+                >Type is required</small
+              >
+              <small
+                class="text-red-500"
+                *ngIf="customerForm.get('type')?.errors?.['invalidType']"
+                >Invalid type selected</small
+              >
+            </div>
+          </div>
+        </div>
+
+        <div class="grid col-span-2">
+          <div
+            class="bg-white flex min-h-[60px] flex-col-reverse justify-center rounded-md border border-gray-300 px-3 py-2 shadow-sm focus-within:shadow-inner"
+          >
+            <input
+              type="text"
+              name="address"
+              formControlName="address"
+              id="adress"
+              class="peer block w-full border-0 p-0 text-base text-gray-900 placeholder-gray-400 focus:ring-0"
+              placeholder="Adress"
+            />
+            <label
+              for="address"
+              html="address"
+              class="block transform text-xs font-bold uppercase text-gray-400 transition-opacity, duration-200 peer-placeholder-shown:h-0 peer-placeholder-shown:-translate-y-full peer-placeholder-shown:opacity-0"
+              >Adress</label
+            >
+            <div
+              class="flex flex-col"
+              *ngIf="
+                customerForm.get('address')?.errors &&
+                customerForm.get('address')?.touched
+              "
+            >
+              <small
+                class="text-red-500"
+                *ngIf="customerForm.get('address')?.errors?.['required']"
+                >Adress is required</small
+              >
+              <small
+                class="text-red-500"
+                *ngIf="customerForm.get('address')?.errors?.['minlength']"
+                >Adress should be at least 10 characters long</small
+              >
+              <small
+                class="text-red-500"
+                *ngIf="customerForm.get('address')?.errors?.['maxlength']"
+                >Adress should not e more than 30 characters long</small
+              >
+            </div>
+          </div>
+        </div>
+
+        <button
+          type="submit"
+          class="mt-4 grid col-span-2 justify-center bg-primary-color text-white py-3 px-6 rounded-md hover:bg-primary-color disabled:opacity-50"
+          [disabled]="isLoading || !canSubmit()"
+        >
+          {{ isLoading ? "Adding..." : "Add Custumer" }}
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

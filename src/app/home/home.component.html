@@ -1,0 +1,51 @@
+<div class="min-h-full d-flex justify-center">
+  <header
+    class="grid items-center grid-cols-1 md:grid-cols-[1fr_2fr] mx-auto max-w-7xl py-10 px-4 sm:px-6 lg:px-8"
+  >
+    <div class="text-center md:text-left">
+      <h1 class="flex-shrink text-3xl font-bold tracking-tight text-gray-900">
+        Bank Customer Management
+      </h1>
+      <p class="py-3 tracking-tight text-gray-900">
+        Bank Customer Management Web Application that allows a bank to manage
+        its customers using Angular and Tailwind.
+      </p>
+    </div>
+
+    <div
+      *ngIf="items && items[0].Value !== '' && items[1].Value !== ''"
+      class="flex justify-items-center justify-center px-2"
+    >
+      <app-card
+        *ngFor="let item of items; let index = index"
+        [item]="item"
+        [index]="index"
+      ></app-card>
+    </div>
+
+    <div
+      *ngIf="items && items[0].Value === '' && items[1].Value === ''"
+      class="flex justify-items-center justify-center px-2"
+    >
+      Loading....
+    </div>
+  </header>
+  <main>
+    <div class="mx-auto  my-10 max-w-7xl py-2 sm:px-6 lg:px-8">
+      <!-- Your content -->
+      <div class="grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-6">
+        <div
+          class="flex h-[400px] items-start flex-col mx-5 py-5 px-4 sm:px-6 lg:px-8 bg-white rounded-3xl"
+        >
+          <h6 class="font-bold">Customers</h6>
+          <div class="flex-grow  flex flex-row justify-center items-center ">
+            <app-chart ></app-chart>
+          </div>
+        </div>
+        <div class="px-4 sm:px-6 lg:px-8 border-cyan-90 w-full">
+          <app-listing-card [data]="customers"  [pages]="pages" (delete)="deleteCustomer($event)"></app-listing-card>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>

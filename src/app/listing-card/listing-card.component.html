@@ -1,0 +1,250 @@
+<div
+  class="flex flex-col shadow-lg rounded-3xl bg-white p-3 overflow-x-auto mx-2"
+>
+  <div class="sm:-mx-6 lg:-mx-8">
+    <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
+      <div class="overflow-x-auto">
+        <table class="min-w-full text-left text-sm font-light">
+          <thead class="font-medium dark:border-neutral-500">
+            <tr>
+              <th colspan="6" class="px-6 py-4">
+                <input
+                  placeholder="Search Something By (account-number,firstName..)"
+                  class="w-full text-black bg-background-primary hover:bg-background-primary hover:text-black rounded-md px-3 py-2 text-sm font-medium"
+                  (input)="onQuery($event)"
+                />
+              </th>
+            </tr>
+            <tr *ngIf="customers.length !== 0">
+              <th scope="col" class="px-6 py-4">FirstName</th>
+              <th scope="col" class="px-6 py-4">LastName</th>
+              <th scope="col" class="px-6 py-4">Email</th>
+              <th scope="col" class="px-6 py-4">Gender</th>
+              <th scope="col" class="px-6 py-4">Adress</th>
+              <th scope="col" class="px-6 py-4">Settings</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              *ngFor="let customer of customers"
+              class="transition duration-300 ease-in-out hover:bg-neutral-100 dark:border-neutral-500 dark:hover:bg-neutral-600"
+            >
+              <td class="whitespace-nowrap px-6 py-4">
+                {{ customer.firstName }}
+              </td>
+              <td class="whitespace-nowrap px-6 py-4">
+                {{ customer.lastName }}
+              </td>
+              <td class="whitespace-nowrap px-6 py-4">{{ customer.email }}</td>
+              <td class="whitespace-nowrap px-6 py-4 flex justify-center">
+                <svg
+                  *ngIf="customer.gender == 'Male'"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  enable-background="new 0 0 512 512"
+                  viewBox="0 0 512 512"
+                >
+                  <path
+                    d="M187.131 494.899c-45.241 0-87.774-17.609-119.764-49.584-31.977-32.01-49.585-74.541-49.585-119.764 0-45.224 17.608-87.755 49.58-119.76 31.995-31.978 74.528-49.585 119.769-49.585 45.24 0 87.773 17.607 119.764 49.579 31.979 32.011 49.587 74.542 49.587 119.766 0 45.223-17.608 87.755-49.581 119.759C274.904 477.29 232.372 494.899 187.131 494.899zM187.131 174.207c-40.435 0-78.449 15.736-107.04 44.312-58.956 59.016-58.956 155.05.005 214.071 28.586 28.571 66.6 44.31 107.035 44.31 40.434 0 78.448-15.738 107.039-44.314 58.958-59.017 58.958-155.051-.004-214.072C265.58 189.943 227.565 174.207 187.131 174.207zM463.753 191.401c-.423 0-.85-.029-1.279-.091-4.921-.7-8.343-5.257-7.643-10.178l20.453-143.734L331.586 57.82c-4.923.704-9.479-2.723-10.177-7.644-.699-4.921 2.723-9.478 7.644-10.177l155.563-22.108c2.808-.404 5.63.545 7.631 2.547 2.002 2.002 2.944 4.829 2.546 7.631l-22.142 155.599C472.013 188.159 468.161 191.401 463.753 191.401z"
+                  />
+                  <path
+                    d="M300.533,221.152c-2.304,0-4.607-0.879-6.364-2.636c-3.515-3.515-3.515-9.214,0-12.729l185.35-185.351
+                  c3.516-3.514,9.213-3.514,12.729,0c3.515,3.515,3.515,9.214,0,12.729L306.896,218.517
+                  C305.139,220.273,302.836,221.152,300.533,221.152z"
+                  />
+                </svg>
+                <span  *ngIf="customer.gender == 'Male'">Male</span>
+                <svg
+                  *ngIf="customer.gender == 'Genderfluid'"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    fill="none"
+                    fill-rule="evenodd"
+                    stroke="#000"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M10.1834227,6.94144927 C9.78445496,5.9983348 9.02544475,5.20755746 8.00119347,4.79299791 C5.95405534,3.96321173 3.62182602,4.95078327 2.79308767,6.99834582 C1.96330149,9.04548395 2.95087303,11.3777133 4.99843558,12.2064516 C7.04557371,13.0362378 8.91308276,11.5022074 10.2065414,10.0011037 C11.5,8.5 13.3689081,6.9665363 15.4160462,7.79632248 C17.4636088,8.62506083 18.4511803,10.9572901 17.6213941,13.0044283 C16.7926558,15.0519908 14.4604265,16.0395624 12.4132883,15.2097762 C11.3899772,14.7955971 10.6314204,14.0058906 10.2321586,13.0639214 M16.7418491,8.67387371 L20.91,4.5 M16.7404179,4.5014302 L20.9114312,8.67244351 M6.5,12.5 L6.5,19.5 M3.5,16.5 L9.5,16.5"
+                  />
+                </svg>
+                <span  *ngIf="customer.gender == 'Genderfluid'">Genderfluid</span>
+                <svg
+                  *ngIf="customer.gender == 'Female'"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  enable-background="new 0 0 512 512"
+                  viewBox="0 0 512 512"
+                >
+                  <path
+                    d="M256.332,296.044c-76.712,0-139.122-62.412-139.122-139.127c0-76.709,62.41-139.116,139.122-139.116
+                  s139.122,62.407,139.122,139.116C395.454,233.632,333.044,296.044,256.332,296.044z M256.332,35.801
+                  c-66.787,0-121.122,54.332-121.122,121.116c0,66.79,54.335,121.127,121.122,121.127c66.787,0,121.122-54.337,121.122-121.127
+                  C377.454,90.133,323.119,35.801,256.332,35.801z"
+                  />
+                  <path
+                    d="M256.332,494.902c-4.971,0-9-4.029-9-9V287.044c0-4.971,4.029-9,9-9s9,4.029,9,9v198.858
+                  C265.332,490.873,261.303,494.902,256.332,494.902z"
+                  />
+                  <path
+                    d="M353.312,395.445H159.353c-4.971,0-9-4.029-9-9s4.029-9,9-9h193.959c4.971,0,9,4.029,9,9
+                  S358.282,395.445,353.312,395.445z"
+                  />
+                </svg>
+                <span  *ngIf="customer.gender == 'Female'">Female</span>
+
+                <svg
+                  *ngIf="customer.gender == 'Non-binary'"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  id="nonbinary"
+                >
+                  <path
+                    fill="none"
+                    stroke="#000"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M16.5,6.5 C16.5,9.26083333 14.2608333,11.5 11.5,11.5 C8.73916667,11.5 6.5,9.26083333 6.5,6.5 C6.5,3.73916667 8.73916667,1.5 11.5,1.5 C14.2608333,1.5 16.5,3.73916667 16.5,6.5 Z M11.5,11.5 L11.5,17.5 M8.5,14.5 L14.5,20.5 M8.5,20.5 L14.5,14.5"
+                    transform="matrix(1 0 0 -1 0 22)"
+                  ></path>
+                </svg>
+                <span  *ngIf="customer.gender == 'Non-binary'">Non-binary</span>
+                <svg
+                  *ngIf="customer.gender == 'Agender'"
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                  version="1.1"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 256 256"
+                  xml:space="preserve"
+                >
+                  <defs></defs>
+                  <g
+                    style="
+                      stroke: none;
+                      stroke-width: 0;
+                      stroke-dasharray: none;
+                      stroke-linecap: butt;
+                      stroke-linejoin: miter;
+                      stroke-miterlimit: 10;
+                      fill: none;
+                      fill-rule: nonzero;
+                      opacity: 1;
+                    "
+                    transform="translate(1.4065934065934016 1.4065934065934016) scale(2.81 2.81)"
+                  >
+                    <path
+                      d="M 65.896 39.567 C 60.898 34.568 54.539 31.742 48 31.08 V 0 H 42 v 31.08 c -6.538 0.662 -12.897 3.488 -17.895 8.486 c -5.582 5.582 -8.656 13.002 -8.656 20.896 s 3.074 15.315 8.656 20.896 C 29.865 87.12 37.432 90 45 90 s 15.135 -2.88 20.896 -8.642 c 5.582 -5.581 8.656 -13.002 8.656 -20.896 S 71.478 45.148 65.896 39.567 z M 28.347 43.81 L 28.347 43.81 c 4.592 -4.592 10.622 -6.887 16.653 -6.887 c 6.031 0 12.061 2.295 16.653 6.887 c 3.732 3.732 6.051 8.499 6.702 13.651 H 21.645 C 22.296 52.309 24.615 47.543 28.347 43.81 z M 61.653 77.115 c -9.182 9.181 -24.122 9.182 -33.306 0 c -3.732 -3.732 -6.051 -8.499 -6.702 -13.652 h 46.711 C 67.704 68.616 65.385 73.383 61.653 77.115 z"
+                      style="
+                        stroke: none;
+                        stroke-width: 1;
+                        stroke-dasharray: none;
+                        stroke-linecap: butt;
+                        stroke-linejoin: miter;
+                        stroke-miterlimit: 10;
+                        fill: rgb(0, 0, 0);
+                        fill-rule: nonzero;
+                        opacity: 1;
+                      "
+                      transform=" matrix(1 0 0 1 0 0) "
+                      stroke-linecap="round"
+                    />
+                  </g>
+                </svg>
+                <span  *ngIf="customer.gender == 'Agender'">Agender</span>
+
+              </td>
+              <td class="whitespace-nowrap px-6 py-4">
+                {{ customer.address }}
+              </td>
+              <td class="whitespace-nowrap px-6 py-4 flex justify-between">
+                <a [routerLink]="['customer', customer?.id]">
+                  <span class="text-primary-color">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                      class="w-5 h-5"
+                    >
+                      <path
+                        d="M5.433 13.917l1.262-3.155A4 4 0 017.58 9.42l6.92-6.918a2.121 2.121 0 013 3l-6.92 6.918c-.383.383-.84.685-1.343.886l-3.154 1.262a.5.5 0 01-.65-.65z"
+                      />
+                      <path
+                        d="M3.5 5.75c0-.69.56-1.25 1.25-1.25H10A.75.75 0 0010 3H4.75A2.75 2.75 0 002 5.75v9.5A2.75 2.75 0 004.75 18h9.5A2.75 2.75 0 0017 15.25V10a.75.75 0 00-1.5 0v5.25c0 .69-.56 1.25-1.25 1.25h-9.5c-.69 0-1.25-.56-1.25-1.25v-9.5z"
+                      />
+                    </svg>
+                  </span>
+                </a>
+                <button
+                  class="text-secondary-color"
+                  (click)="onDelete(customer)"
+                  [disabled]="getIsDeleteLoading(customer)"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                    class="w-5 h-5"
+                  >
+                    <path
+                      d="M11 5a3 3 0 11-6 0 3 3 0 016 0zM2.046 15.253c-.058.468.172.92.57 1.175A9.953 9.953 0 008 18c1.982 0 3.83-.578 5.384-1.573.398-.254.628-.707.57-1.175a6.001 6.001 0 00-11.908 0zM12.75 7.75a.75.75 0 000 1.5h5.5a.75.75 0 000-1.5h-5.5z"
+                    />
+                  </svg>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div
+    class="d-flex justify-center min-w-min mx-6 text-secondary-color"
+    *ngIf="customers.length === 0"
+  >
+    <p>No Data</p>
+  </div>
+
+  <!-- Navigation Controles -->
+
+  <div class="flex justify-end">
+    <nav aria-label="Page navigation example">
+      <ul class="list-style-none flex">
+        <li>
+          <a
+            class="relative block rounded bg-transparent py-1.5 px-3 text-sm text-neutral-600 transition-all duration-300 hover:bg-neutral-100 dark:text-white dark:hover:bg-neutral-700 dark:hover:text-white"
+            aria-label="Previous"
+            (click)="previousPage()"
+          >
+            <span aria-hidden="true">&laquo;</span>
+          </a>
+        </li>
+        <li *ngFor="let page of pages">
+          <a
+            class="relative block rounded bg-transparent py-1.5 px-3 text-sm text-neutral-600 transition-all duration-300 hover:bg-neutral-100 dark:text-white dark:hover:bg-neutral-700 dark:hover:text-white"
+            aria-label="Previous"
+            (click)="getData(page)"
+          >
+            {{ page }}
+          </a>
+        </li>
+        <li>
+          <a
+            class="relative block rounded bg-transparent py-1.5 px-3 text-sm text-neutral-600 transition-all duration-300 hover:bg-neutral-100 dark:text-white dark:hover:bg-neutral-700 dark:hover:text-white"
+            aria-label="Next"
+            (click)="nextPage()"
+            ><span aria-hidden="true">&raquo;</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</div>

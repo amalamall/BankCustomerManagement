@@ -1,0 +1,11 @@
+<div
+  class="flex flex-col text-center flex-shrink shadow-lg px-10 md:px-16 rounded-2xl py-2 mx-2 my-3"
+  [ngClass]="{'bg-primary-color': (index % 2 === 0), 'bg-secondary-color': (index % 2 !== 0)}"
+>
+  <div class="flex-shrink text-sm font-bold tracking-tight text-white py-2">
+    {{ item?.Title }}
+  </div>
+  <div class="flex-shrink text-sm font-bold tracking-tight text-gray-300 py-2">
+    {{ item?.Value }}
+  </div>
+</div>
